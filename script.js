@@ -1,3 +1,50 @@
+let computer;
+let playerSelection;
+let co ;
+let po;
+const score = document.getElementById('score-p');
+const result = document.getElementById('result');
+
+
+//Event Listener  /Rock
+const rock = document.getElementById('rock');
+rock.addEventListener('click', function() {
+    computer = getComputerChoice().toLowerCase();
+    playerSelection = 'rock'
+    console.log(playerSelection)
+    console.log(computer)
+    result.textContent = 'as';
+    playRound(playerSelection, computer);
+    update();
+    })
+
+//Event Listener  /paper
+    const paper = document.getElementById('paper');
+    paper.addEventListener('click', function() {
+        computer = getComputerChoice().toLowerCase();
+        playerSelection = 'paper'
+        console.log(playerSelection)
+        console.log(computer)
+        playRound(playerSelection, computer);
+        update();
+        })
+    
+//Event Listener  /scissors
+        const scissors = document.getElementById('scissors');
+        scissors.addEventListener('click', function() {
+            computer = getComputerChoice().toLowerCase();
+            playerSelection = 'scissors'
+            console.log(playerSelection)
+            console.log(computer)
+            playRound(playerSelection, computer);
+            update();
+            })
+
+function update(po,co){
+    score.textContent = `| ${po} : ${co} |`;
+}
+
+
 function getComputerChoice(){
     let randomNum =  Math.floor(Math.random()*3) + 1;
     let result;
@@ -18,82 +65,78 @@ function getComputerChoice(){
 
 }
 
-let playRound = (player,computer) => {
-    player = prompt('rock,paper or scissors').toLowerCase();
-    computer = getComputerChoice().toLowerCase();
-    let po = 0;
-    let co = 0;
+function playRound (player,computer) {
+
     if (player === 'rock' && computer === 'rock')
     {
-        console.log('its a tie. rock and rock')
-        return 'tie';
+        result.textContent = "tie";
+        checkWinner();
     }
     else if(player === 'rock' && computer === 'scissors'){
-         console.log('win for you. rock against scissors');
-  return 'win';
+        result.innerText = "rock won scissors!";
+  po++;
     }
     else if(player === 'rock' && computer === 'paper'){
-        console.log('you loss. rock against scissors')
-        return 'loss';
+        result.innerText = "rock won paper!";
+        co++;
+        checkWinner(); 
     }
     else if(player === 'scissors')
     {
         if(computer === 'scissors')
         {
-            console.log('tie. scissors and scissors')
-            return 'tie' ;
+            result.innerText = "TIE!";
+            checkWinner(); 
         }
         else if( computer === 'rock')
         {
-            console.log('you lose. scissors agaisnt rock')
-            return 'loss';
+            result.innerText = "computer won! scissors losing to rock";
+            co++;
+            checkWinner(); 
         }
         else {
-            console.log('you win. scissors agaisnt rock')
-            return 'win';
+            result.innerText = "you won! scissors against rock";
+            po++;
+            checkWinner(); 
         }
     }
     else if(player === 'paper')
     {
         if(computer ==='paper')
         {
-            console.log('tie. paper against papar')
-            return 'tie';
+            result.innerText = "TIE!";
+            checkWinner(); 
         }
         else if(computer ==='rock')
         {
-            console.log('you win. paper against rock')
-            return 'win';
+            result.innerText = "you win!paper against rock";
+            po++;
+            checkWinner(); 
         }
         else {
-            console.log('you lose. paper against scissors');
-            return 'loss';
+            result.innerText = "you lost!paper against scissors";
+            co++;
+            checkWinner(); 
         }
     }
 }
-
-function game(){
-    let co=0;
-    let po=0;
-    for (let i=0;i<=5;i++)
-    {
-    let score = playRound();
-    if(score === 'tie')
-    {
-        po++;
-        co++;
-    }
-
-else if(score === 'win')
-{
-po++;
-}   
-else if (score ==='loss')
-{
-    co++;
-}
-    }
-    console.log('yourscore is:' + po + 'computer score is: ' + co);
+function update(){
+    score.innerText = `SCORE: ${po} / ${co}`;
 }
 
-game();
+function checkWinner(){
+    if (po < 5 && co < 5){
+    }else{
+        declareWinner();
+        po = 0;
+        co = 0;
+    }  
+}
+function declareWinner(){
+    if (po===5){
+        result.innerText = "Yay! You won the game!!!\nLet's play another one!";
+    } else if (co===5){
+        result.innerText = "Sorry, it seems that you lost the game...\nLet's play another one!";
+        
+    }
+}

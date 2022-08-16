@@ -3,21 +3,51 @@
     <head>
 <meta charset="UTF-8">
 <title>Rock Paper Scissors</title>
-<script src="script.js"></script>
+
+<script src="script.js" defer></script>
 
 <style>
      html {
         font-family: sans-serif;
+        text-align: center;
+        overflow:hidden;
+        background-color:#FBF2C0;
       }
       body {
-        width: 50%;
-        max-width: 800px;
-        min-width: 480px;
-        margin: 0 auto;
+        margin:0;
+        padding:0;
+        display:flex;
+        flex-flow:column;
+        flex:0;
+        margin: 150px;
+      
       }
+      h1{
+        color:#48392A;
+      }
+      h2{
+        color:#43281C;
+      }
+      
+    .btn{
+      padding:10px;
+      background-color: #C06E52;
+      color: lightgray;
+    }
 </style>
     </head>
     <body>
+      <h1>Rock Paper Scissors</h1>
+      <h2> First to 5 </h2>
+      <div id="scores">
+        <div id="result">what going</div>
+        <div id="score-p">yes </div>
+      </div>
+      <div class="buttons">
+<button id="rock" class="btn">rock </button>
+<button id="paper" class="btn">paper </button>
+<button id="scissors" class="btn"> scissors</button>
+</div>
 
-    </body>
+</body>
 </html>
